@@ -427,3 +427,6 @@ C:\Users\foals\workspace\c-sharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Walker
 C:\Users\foals\workspace\c-sharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Walker\Details.cshtml.g.cs
 C:\Users\foals\workspace\c-sharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Owner\Index.cshtml.g.cs
 C:\Users\foals\workspace\c-sharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Owner\Details.cshtml.g.cs
+C:\Users\foals\workspace\c-sharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Owner\Create.cshtml.g.cs
+C:\Users\foals\workspace\c-sharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Owner\Delete.cshtml.g.cs
+C:\Users\foals\workspace\c-sharp\DogGo\DogGo\obj\Debug\net5.0\Razor\Views\Owner\Edit.cshtml.g.cs
