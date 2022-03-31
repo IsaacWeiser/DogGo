@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DogGo.Models.ViewModels
+namespace DogGo.Models
 {
     public class Walk
     {

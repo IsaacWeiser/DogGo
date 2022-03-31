@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using DogGo.Models;
+using DogGo.Controllers;
+using DogGo;
 
 namespace DogGo.Repositories
 {
     public interface IWalkRepository
     {
-        public int GetDurationById();
+        public List<Walk> GetAllWalksByWalkerId(int id);
 
-        public DateTime Ge
+        public List<Owner> GetAllClientsByWalkerId(int id);
     }
 }

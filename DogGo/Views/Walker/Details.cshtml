@@ -1,4 +1,4 @@
-﻿@model DogGo.Models.Walker
+﻿@model DogGo.Models.ViewModels.WalkFormViewModel;
 
 @{
     ViewData["Title"] = "Details";
@@ -11,32 +11,66 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.Walker.Id)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
+            @Html.DisplayFor(model => model.Walker.Id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Walker.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Walker.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NeighborhoodId)
+            @Html.DisplayNameFor(model => model.Walker.Neighborhood)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NeighborhoodId)
+            @Html.DisplayFor(model => model.Walker.Neighborhood.Name)
         </dd>
         <dt class = "col-sm-2">
-            <img class="bg-info" src="@Model.ImageUrl" alt="avatar" />
+            <img class="bg-info" src="@Model.Walker.ImageUrl" alt="avatar" />
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
+            @Html.DisplayFor(model => model.Walker.ImageUrl)
         </dd>
     </dl>
 </div>
+<div class="form-group">
+                <label asp-for="Walks" class="control-label">walk duration</label>
+
+                <ul>
+                @foreach (Walk walk in Model.Walks)
+                    {
+                        <li>@walk.Duration Mins</li>
+                    }
+                </ul>
+            </div>
+            <div class="form-group">
+                <label asp-for="Walks" class="control-label">Clients</label>
+
+                <ul>
+                @foreach (Owner owner in Model.Clients)
+                    {
+                        <li>@owner.Name</li>
+                    }
+                </ul>
+            </div>
+             <div class="form-group">
+ 
+<label asp-for="Walks" class="control-label">Walk Date</label>
+                <ul>
+                @foreach (Walk walk in Model.Walks)
+                    {
+                        <li>@walk.Date</li>
+                    }
+                </ul>
+            </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
+    <div>
+        <label asp-for="TotalWalkTime" class="control-label"> Total Walk Time</label>
+                <h4>@Model.TotalWalkTime</h4>
+    </div>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.Walker.Id  }) |
     <a asp-action="Index">Back to List</a>
 </div>
