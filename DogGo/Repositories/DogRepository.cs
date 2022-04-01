@@ -32,7 +32,7 @@ namespace DogGo.Repositories
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT Name, Id, OwnerId, Breed
+                    cmd.CommandText = @"SELECT Name, Id, OwnerId, Breed, ImageUrl
                                      FROM Dog";
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -48,6 +48,7 @@ namespace DogGo.Repositories
                                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                 OwnerId = reader.GetInt32(reader.GetOrdinal("OwnerID")),
                                 Breed = reader.GetString(reader.GetOrdinal("Breed"))
+                                 
                             };
 
                             dogs.Add(doggy);
@@ -131,8 +132,8 @@ namespace DogGo.Repositories
 
                             // Check if optional columns are null
                             if (reader.IsDBNull(reader.GetOrdinal("Notes")) == false)
-                            {
-                                dog.Notes = reader.GetString(reader.GetOrdinal("Notes"));
+                           {
+                               dog.Notes = reader.GetString(reader.GetOrdinal("Notes"));
                             }
                             if (reader.IsDBNull(reader.GetOrdinal("ImageUrl")) == false)
                             {

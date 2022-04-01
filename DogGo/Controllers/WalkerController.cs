@@ -5,7 +5,7 @@ using DogGo.Models;
 using DogGo.Controllers;
 using System.Collections.Generic;
 using DogGo.Models.ViewModels;
-
+using System.Security.Claims;
 
 namespace DogGo.Controllers
 {
@@ -24,7 +24,24 @@ namespace DogGo.Controllers
         // GET: Walkers
         public ActionResult Index()
         {
-            List<Walker> walkers = _walkerRepo.GetAllWalkers();
+
+            int currUserId = 0;
+            List<Walker> walkers = new List<Walker>();
+
+            if (User.FindFirstValue(ClaimTypes.NameIdentifier) != null)
+            {
+               currUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            }
+
+
+                if (currUserId != 0)
+            {
+                walkers = _walkerRepo.GetAllWalkersInHoodByOwnerId(currUserId);
+            }
+            else
+            {
+                walkers = _walkerRepo.GetAllWalkers();
+            }
 
             return View(walkers);
         }

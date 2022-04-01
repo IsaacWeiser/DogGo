@@ -105,6 +105,49 @@ namespace DogGo.Repositories
             }
         }
 
+        public List<Walker> GetAllWalkersInHoodByOwnerId(int ownerNeighborhoodId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT distinct w.Id, w.Name as 'Name', w.ImageUrl, n.Name as 'Hood', n.Id as 'hoodId'
+                        FROM Walker w
+                        Join Neighborhood n on n.Id = w.NeighborhoodId
+                        Join Owner o on o.NeighborhoodId = n.Id
+                        WHERE w.NeighborhoodId = @ownerNeighborhoodId
+                    ";
+
+                    cmd.Parameters.AddWithValue("@ownerNeighborhoodId", ownerNeighborhoodId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        List<Walker> walkers = new List<Walker>();
+                        while (reader.Read())
+                        {
+                            Walker walker = new Walker
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                ImageUrl = reader.GetString(reader.GetOrdinal("ImageUrl")),
+                                Neighborhood = new Neighborhood()
+                                {
+                                    Name = reader.GetString(reader.GetOrdinal("Hood")),
+                                    Id = reader.GetInt32(reader.GetOrdinal("HoodId"))
+                                }
+                            };
+
+                            walkers.Add(walker);
+                        }
+
+                        return walkers;
+                    }
+                }
+            }
+        }
+
         public List<Walker> GetWalkersInNeighborhood(int neighborhoodId)
         {
             using (SqlConnection conn = Connection)
